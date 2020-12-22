@@ -1,5 +1,6 @@
 var dbConn = require('../config/db');
 
+// Get all warranty cards desc
 exports.getAll = (req, res, next) => {
     dbConn.query('SELECT * FROM warranty_cards ORDER BY id desc', function (err, rows) {
         if (err) {
@@ -10,6 +11,7 @@ exports.getAll = (req, res, next) => {
     });
 }
 
+//Get editable warranty card
 exports.findOne = function (req, res, next) {
     let id = req.params.id;
     dbConn.query('SELECT * FROM warranty_cards WHERE id = ' + id, function (err, rows, fields) {
@@ -26,6 +28,7 @@ exports.findOne = function (req, res, next) {
     })
 }
 
+//Save/Update warranty card
 exports.create = (req, res, next) => {
     let customer_name = req.body.customer_name;
     let product_name = req.body.product_name;
@@ -59,6 +62,7 @@ exports.create = (req, res, next) => {
         } else {
             query = 'UPDATE warranty_cards SET ? WHERE id = ' + id
         }
+        
         // insert query
         dbConn.query(query, form_data, function (err, result) {
             //if(err) throw err
