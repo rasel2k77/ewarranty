@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "nodemon node ./bin/www",
+    "save": "npm install && cd client && npm install",
     "client": "cd client && npm start",
     "dev": "concurrently \"npm run start\" \"npm run client\""
   },
